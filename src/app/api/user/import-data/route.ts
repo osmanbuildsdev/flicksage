@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { db } from '@/lib/db';
 import { watchlist, favorites, profiles } from '@/lib/db/schema';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 async function getUserFromToken(request: NextRequest) {
   const authHeader = request.headers.get('authorization');

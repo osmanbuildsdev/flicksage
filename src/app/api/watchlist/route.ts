@@ -4,7 +4,7 @@ import { watchlist, users, profiles } from '@/lib/db/schema';
 import { eq, and } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 async function getUserFromToken(request: NextRequest) {
   const token = request.cookies.get('token')?.value;

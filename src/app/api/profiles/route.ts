@@ -4,7 +4,7 @@ import { profiles, users } from '@/lib/db/schema';
 import { eq, and } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 interface JWTPayload {
   userId: string;

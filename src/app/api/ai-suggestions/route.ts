@@ -4,7 +4,7 @@ import { eq } from 'drizzle-orm';
 import { db } from '../../../lib/db';
 import { users, profiles, favorites } from '../../../lib/db/schema';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export async function POST(request: NextRequest) {
   try {

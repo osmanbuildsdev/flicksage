@@ -4,7 +4,7 @@ import { users } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 interface JWTPayload {
   userId: string;
@@ -37,7 +37,10 @@ export async function POST(request: NextRequest) {
 
 
     try {
-      new URL(profilePicture);
+      const parsed = new URL(profilePicture);
+      if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+        throw new Error('Unsupported protocol');
+      }
     } catch (error) {
       return NextResponse.json({ error: 'Invalid profile picture URL' }, { status: 400 });
     }

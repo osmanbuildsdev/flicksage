@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { db } from '@/lib/db';
 import { favorites, profiles } from '@/lib/db/schema';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export async function GET(request: NextRequest) {
   try {
