@@ -87,12 +87,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (storedProfile) {
           setActiveProfile(JSON.parse(storedProfile));
         }
-        
-
-        setTimeout(() => {
-          refreshFavorites();
-          refreshWatchlist();
-        }, 100);
       } catch (error) {
         console.error('Error parsing stored user data:', error);
         localStorage.removeItem('auth_token');
@@ -451,6 +445,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.error('Error refreshing favorites:', error);
     }
   }, [token, activeProfile]);
+
+  // Load the active profile's lists once the session is restored.
+  useEffect(() => {
+    if (token && activeProfile) {
+      refreshFavorites();
+      refreshWatchlist();
+    }
+  }, [token, activeProfile, refreshFavorites, refreshWatchlist]);
 
   const refreshProfiles = useCallback(async () => {
     if (!token) return;
