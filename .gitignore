@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# third-party logos kept locally, not distributed
+public/next.svg
+public/vercel.svg
